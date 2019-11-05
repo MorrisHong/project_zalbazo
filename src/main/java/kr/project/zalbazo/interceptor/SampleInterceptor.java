@@ -4,14 +4,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 @Slf4j
 public class SampleInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        Cookie cookie = new Cookie("member", "memberCookie");
+        response.addCookie(cookie);
         log.debug("Interceptor preHandle..............");
         return true;
     }
@@ -19,5 +25,6 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         log.debug("Interceptor postHandle............");
+        Arrays.stream(request.getCookies()).map(Cookie::getName).forEach(log::debug);
     }
 }
