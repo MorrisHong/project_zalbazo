@@ -1,6 +1,10 @@
 package kr.project.zalbazo.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
@@ -16,5 +20,11 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter("UTF-8", true);
+        return new Filter[]{new HiddenHttpMethodFilter(), encodingFilter};
     }
 }
