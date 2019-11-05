@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
@@ -23,6 +25,7 @@ import javax.sql.DataSource;
         }))
 @PropertySource(value = "classpath:application.properties")
 @MapperScan(basePackages = "kr.project.zalbazo.mapper")
+@EnableTransactionManagement
 public class RootConfig {
 
     @Value("${mysql.driverClassName}")
@@ -49,6 +52,13 @@ public class RootConfig {
         SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
         return sessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+        dataSourceTransactionManager.setDataSource(dataSource());
+        return dataSourceTransactionManager;
     }
 
 }
