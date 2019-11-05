@@ -17,7 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {RootConfig.class, ServletConfig.class})
@@ -39,6 +39,15 @@ public class SampleControllerTest {
     public void testSampleView() throws Exception{
         mockMvc.perform(get("/sample/sampleview"))
                 .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testHomepage() throws Exception {
+        mockMvc.perform(get("/"))
+                .andDo(print())
+                .andExpect(view().name("index"))
+                .andExpect(handler().method(SampleController.class.getMethod("home")))
                 .andExpect(status().isOk());
     }
 

@@ -8,17 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/sample")
 public class SampleController {
 
     @Autowired
     private SampleService sampleService;
+
+    @GetMapping({"","/index"})
+    public String home() {
+        return "index";
+    }
+
 
     @GetMapping("/hi")
     @ResponseBody
     public String hi() {
         return "hi " +sampleService.getName() + " : " + sampleService.now();
     }
+
 
     @GetMapping("/sampleview")
     public String sampleView() {

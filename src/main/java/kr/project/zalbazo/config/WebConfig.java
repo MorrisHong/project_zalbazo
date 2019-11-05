@@ -2,6 +2,8 @@ package kr.project.zalbazo.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
+
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -17,4 +19,5 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
 }
