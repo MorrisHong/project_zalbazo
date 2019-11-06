@@ -21,6 +21,6 @@ public class ServletConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new SampleInterceptor());
+        registry.addInterceptor(new SampleInterceptor()).addPathPatterns("/loginProcess");
     }
 }

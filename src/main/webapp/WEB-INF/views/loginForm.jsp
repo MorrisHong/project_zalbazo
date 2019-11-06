@@ -11,6 +11,7 @@
     <form:form modelAttribute="member" method="post" action="/loginProcess">
         아이디 : <form:input path="username"/>
         비밀번호 : <form:input path="password"/>
+        <form:button type="submit" value="전송"/>
     </form:form>
 </div>
 

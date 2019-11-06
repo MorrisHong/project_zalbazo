@@ -73,8 +73,16 @@
                             </ul>
                         </li>
                         <li class="menu-btn">
-                            <a href="#" class="login">log in</a>
-                            <a href="#" class="template-btn">sign up</a>
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.user}">
+                                    ${sessionScope.user.username}
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="/loginForm" class="login">log in</a>
+                                    <a href="#" class="template-btn">sign up</a>
+                                </c:otherwise>
+                            </c:choose>
+
                         </li>
                     </ul>
                 </div>

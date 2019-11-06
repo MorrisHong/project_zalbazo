@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class SampleController {
 
@@ -40,8 +42,12 @@ public class SampleController {
     }
 
     @PostMapping("/loginProcess")
-    public ResponseEntity<TestMember> loginProcess(@ModelAttribute TestMember member) {
+    public String loginProcess(@ModelAttribute TestMember member, HttpSession session) {
         TestMember saved = sampleService.getMember(member);
-        return saved == null ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) : new ResponseEntity<>(saved, HttpStatus.OK);
+        if(saved == null) {
+            return "loginForm";
+        }
+        session.setAttribute("user", saved);
+        return "redirect:/index";
     }
 }

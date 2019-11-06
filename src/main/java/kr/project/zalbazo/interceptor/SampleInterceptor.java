@@ -16,10 +16,9 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        request.setCharacterEncoding("UTF-8");
 //        Cookie cookie = new Cookie("member", "memberCookie");
 //        response.addCookie(cookie);
-//        log.debug("Interceptor preHandle..............");
+        log.debug("Interceptor preHandle..............");
 
         return true;
     }
