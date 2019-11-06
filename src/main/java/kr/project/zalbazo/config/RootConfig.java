@@ -16,6 +16,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import javax.sql.DataSource;
 
