@@ -50,4 +50,10 @@ public class SampleController {
         session.setAttribute("user", saved);
         return "redirect:/index";
     }
+
+    @GetMapping("/logout")
+    public String logoutProcess(HttpSession session) {
+        session.invalidate();
+        return "redirect:/index";
+    }
 }

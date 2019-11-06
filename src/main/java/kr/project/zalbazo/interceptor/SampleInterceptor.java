@@ -4,12 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 @Slf4j
 public class SampleInterceptor extends HandlerInterceptorAdapter {

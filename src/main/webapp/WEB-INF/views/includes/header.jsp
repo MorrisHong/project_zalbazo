@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="logo-area">
-                    <a href="index.html"><img src="resources/images/logo.png" alt="logo"></a>
+                    <a href="/index"><img src="resources/images/logo.png" alt="logo"></a>
                 </div>
             </div>
             <div class="col-lg-10">
@@ -76,6 +76,7 @@
                             <c:choose>
                                 <c:when test="${not empty sessionScope.user}">
                                     ${sessionScope.user.username}
+                                    <a href="/logout" class="logout">Logout</a>
                                 </c:when>
                                 <c:otherwise>
                                     <a href="/loginForm" class="login">log in</a>
