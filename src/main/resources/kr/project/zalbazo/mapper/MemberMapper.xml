@@ -2,7 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="kr.project.zalbazo.mapper.MemberMapper">
     <insert id="insert">
-        insert into newzalbazo.mem(login_id, username, password, email, join_date, role, address)
-        VALUES ( #{login_id}, #{username}, #{password}, #{email}, CURRENT_TIMESTAMP, null, #{address})
+        insert into springpractice.test_member("username", "password")
+        VALUES (#{username}, #{password})
     </insert>
+    <select id="getMember" resultType="kr.project.zalbazo.domain.TestMember">
+        select *
+        from springpractice.test_member tm
+        where tm.username = #{username}
+          and tm.password = #{password}
+    </select>
+    <select id="getAllMember" resultType="kr.project.zalbazo.domain.TestMember">
+        select *
+        from springpractice.test_member tm
+    </select>
 </mapper>

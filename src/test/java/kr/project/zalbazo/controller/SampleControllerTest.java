@@ -16,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -49,6 +50,26 @@ public class SampleControllerTest {
                 .andExpect(view().name("index"))
                 .andExpect(handler().method(SampleController.class.getMethod("home")))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testPostMemSuccess() throws Exception {
+        mockMvc.perform(post("/loginProcess")
+                    .param("username","govlmo91")
+                    .param("password","1234")
+                    .characterEncoding("UTF-8"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testPostMemFail() throws Exception {
+        mockMvc.perform(post("/loginProcess")
+                    .param("username","govlmo91")
+                    .param("password","123")
+                    .characterEncoding("UTF-8"))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
     }
 
 }
