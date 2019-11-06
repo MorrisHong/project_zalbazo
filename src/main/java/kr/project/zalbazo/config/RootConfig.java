@@ -10,10 +10,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import javax.sql.DataSource;
 
@@ -51,6 +54,8 @@ public class RootConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
+        Resource resource = new PathMatchingResourcePatternResolver().getResource("classpath:/mybatis-config.xml");
+        sessionFactoryBean.setConfigLocation(resource);
         return sessionFactoryBean.getObject();
     }
 
